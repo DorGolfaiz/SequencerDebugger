@@ -1,0 +1,20 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "sequencer",
+            "request": "launch",
+            "name": "Sequencer Debugger",
+            "program": "${workspaceFolder}/code.txt",
+            "stopOnEntry": true,
+            "device_model": "b4vStraw",
+            "RecAPI": "${env:ProgramFiles}/Vayyar/VayyarUtils/bin/MPR/RecordingAPI.dll",
+            "vayyarDB": "${env:ProgramData}/Vayyar/VayyarUtils/Settings",
+            "version": "CentipedeB",
+            "vayyar_config": "No"
+        }
+    ]
+}

@@ -1,0 +1,93 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "SequencerDebuggerSyntaxHighlight",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#linenumhex"
+		},
+		{
+			"include": "#funcdecleration"
+		},
+		{
+			"include": "#functioncall"
+		},
+		{
+			"include": "#funcname"
+		},
+		{
+			"include": "#comments"
+		}
+	],
+	
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.sequencerdebugger",
+				"match": "Write |Branch |Copy |Wait |Cond |Stop |Nop "
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.sequencerdebugger",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.sequencerdebugger",
+					"match": "\\\\."
+				}
+			]
+		},
+		"linenumhex": {
+			"patterns": [{
+				"name": "constant.numeric.sequencerdebugger",
+				"match": "00[a-fA-F0-9]{4}"
+			}]
+		},
+		"funcdecleration": {
+			"patterns": [{
+				"name": "entity.name.class.sequencerdebugger",
+				"begin": "class passable_ptr",
+				"end": "__cdecl"
+			}]
+		},
+		"funcname": {
+			"patterns": [{
+				"name": "entity.name.function.sequencerdebugger",
+				"begin": "Vayyar::",
+				"end": "\n"
+			}]
+		},
+		"functioncall": {
+			"patterns": [{
+				"name": "entity.name.function.sequencerdebugger",
+				"begin": " < Vayyar",
+				"end": ">"
+			}]
+		},
+		"comments": {
+            "patterns": [
+                {
+                    "name": "comment.sequencerdebugger",
+                    "begin": "#",
+					"end": "\n"
+                }
+            ]
+        },
+		"misc": {
+            "patterns": [
+                {
+                    "name": "comment.sequencerdebugger",
+                    "begin": "Src| < Seq|Conditional",
+					"end": "\n"
+                }
+            ]
+        }
+	},
+	"scopeName": "source.seq"
+}

@@ -1,0 +1,137 @@
+{
+    "name": "sequencerdebugger",
+    "version": "1.0.2",
+    "publisher": "Vayyar",
+    "repository": ".../Software/Development/Tools/SequencerDebugger",
+    "icon": "resources/vayyar.png",
+    "categories": ["Debuggers"],
+    "contributors": ["Dor Golfaiz"],
+    "extensionDependencies": ["ms-python.python"],
+    "displayName": "Sequencer Debugger",
+    "description": "Sequencer Debuggger extension for VS Code",
+    "engines": {
+        "vscode": "^1.47.0"
+    },
+    "scripts": {
+        "package": "vsce package"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.46.0",
+        "@types/glob": "^7.1.1",
+        "@types/mocha": "^7.0.2",
+        "@types/node": "^13.11.0",
+        "eslint": "^6.8.0",
+        "@typescript-eslint/parser": "^2.30.0",
+        "@typescript-eslint/eslint-plugin": "^2.30.0",
+        "glob": "^7.1.6",
+        "mocha": "^7.1.2",
+        "typescript": "^3.8.3",
+        "vscode-test": "^1.3.0",
+        "vscode-debugadapter-testsupport": "1.41.0",
+        "vsce": "1.77.0"
+    },
+    "main": "",
+    "private": true,
+    "activationEvents": [
+        "onDebug"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "sequencerdebugger",
+            "aliases":["sequencerdebugger", "Sequencer Debugger"],
+            "extensions": ["code.txt"],
+            "configuration": "./language-configuration.json",
+            "filenames": ["code.txt"],
+            "icon": {
+                "light": "./resources/vayyar.png",
+                "dark": "./resources/vayyar.png"
+            }
+        }],
+        "grammars": [{
+        "language": "sequencerdebugger",
+        "scopeName": "source.seq",
+        "path": "./syntaxes/sequencerdebugger.tmLanguage.json"
+        }],
+        "breakpoints": [
+            {
+                "language": "plaintext"
+            }
+        ],
+        "debuggers": [
+            {
+                "type": "sequencer",
+                "label": "Sequencer Debugger",
+                "program": "./debugger_main.py",
+                "runtime": "python",
+                "configurationAttributes": {
+                    "launch": {
+                        "required": [
+                            "program"
+                        ],
+                        "properties": {
+                            "program": {
+                                "type": "string",
+                                "description": "The code.txt file that should be debugged.",
+                                "default": "${workspaceFolder}/code.txt"
+                            },
+                            "device_model": {
+                                "type": "string",
+                                "description": "The Vayyar device model that should be debugged.",
+                                "default": "[Embedded][FTDI]CentipedeC_Evb"
+                            },
+                            "RecAPI": {
+                                "type": "string",
+                                "description": "The Recording api dll path",
+                                "default": "${env:ProgramFiles}/Vayyar/VayyarUtils/bin/MPR/RecordingAPI.dll"
+                            },
+                            "vayyarDB": {
+                                "type": "string",
+                                "description": "The Settings folder",
+                                "default": "${env:ProgramData}/Vayyar/VayyarUtils/Settings"
+                            },
+
+                            "version": {
+                                "type": "string",
+                                "description": "Chip Version (Octopus / CentipedeB / CentipedeC",
+                                "default": "CentipedeC"
+                            },
+
+                            "vayyar_config": {
+                                "type": "string",
+                                "description": "vayyar's .config file ",
+                                "default": "No"
+                            },
+
+                            "stopOnEntry": {
+                                "type": "boolean",
+                                "description": "Automatically stop after launch.",
+                                "default": true
+                            },
+                            "trace": {
+                                "type": "boolean",
+                                "description": "Enable logging of the Debug Adapter Protocol.",
+                                "default": true
+                            }
+                        }
+                    }
+                },
+                "initialConfigurations": [
+                    {
+                        "type": "sequencer",
+                        "request": "launch",
+                        "name": "Sequencer Debugger",
+                        "program": "${workspaceFolder}/code.txt",
+                        "stopOnEntry": true, 
+                        "device_model": "[Embedded][FTDI]CentipedeC_Evb",
+                        "RecAPI":"${env:ProgramFiles}/Vayyar/VayyarUtils/bin/MPR/RecordingAPI.dll",
+                        "vayyarDB":"${env:ProgramData}/Vayyar/VayyarUtils/Settings",
+                        "version": "CentipedeC",
+                        "vayyar_config":"No"
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,40 @@
+BREAKPOINT OPCODES
+1. WAIT
+2. WAIT
+3. COPY 0x4000 (rf1RegistersBaseAddress) to 0x0003 (RF_status)
+4. WAIT
+5. WAIT
+6. COPY 0x5000 (rf2RegistersBaseAddress) to 0x0003 (RF_status)
+7. WAIT
+8. WAIT
+9. COPY 0x7000 (rf3RegistersBaseAddress) to 0x0003 (RF_status)
+10. WAIT
+11. WAIT
+12. WRITE 0x8000 to 0x3010
+13. WAIT
+14. COPY 0x0000 to 0x0003 (RF_status)
+15. WAIT 
+16. WRITE 0x0016 to 0x3010 (SEQ_SRC_base_addr_lo)
+17. WAIT
+18. WAIT
+19. WRITE 0x0309 to 0x0075 (Scratch_Pad0)
+20. WRITE 0x0309 to 0x0076 (Scratch_Pad1)
+21. WRITE 0x0301 to 0x309B (PERI_hanshake_write)
+22. WAIT
+23. SCR REG WITH Condition_bmp[17] on 1
+24. WAIT
+25. NOP
+26. NOP
+27. NOP
+28. NOP
+29. NOP
+30. NOP
+31. NOP
+32. NOP
+33. NOP
+34. NOP
+35. RETURN
+
+
+
+
